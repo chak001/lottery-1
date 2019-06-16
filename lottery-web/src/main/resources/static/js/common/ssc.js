@@ -92,6 +92,10 @@ var ssc = new Vue({
 		this.initRebateAndOddsData();
 	},
 	methods : {
+		toLotteryHistoryPage : function() {
+			window.location.href = '/lottery-history?gameCode=' + this.gameCode;
+		},
+
 		changeSelectedOddsAndRebate : function() {
 			this.selectedOddsAndRebate = this.rebateAndOddses[this.oddsAndRebateIndex - 1];
 		},
@@ -848,7 +852,7 @@ var ssc = new Vue({
 			});
 		},
 
-		gotoBettingRecordPage : function() {
+		toBettingRecordPage : function() {
 			window.location.href = '/betting-record';
 		}
 	}

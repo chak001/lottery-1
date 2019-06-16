@@ -35,11 +35,13 @@ import me.zohar.lottery.issue.domain.Issue;
 import me.zohar.lottery.issue.domain.IssueGenerateRule;
 import me.zohar.lottery.issue.domain.IssueSetting;
 import me.zohar.lottery.issue.param.IssueEditParam;
+import me.zohar.lottery.issue.param.LotteryHistoryParam;
 import me.zohar.lottery.issue.param.ManualLotteryParam;
 import me.zohar.lottery.issue.param.SyncLotteryNumMsg;
 import me.zohar.lottery.issue.repo.IssueRepo;
 import me.zohar.lottery.issue.repo.IssueSettingRepo;
 import me.zohar.lottery.issue.vo.IssueVO;
+import me.zohar.lottery.issue.vo.LotteryHistoryVO;
 
 @Validated
 @Service
@@ -276,6 +278,13 @@ public class IssueService {
 
 	public IssueVO findByGameCodeAndIssueNum(String gameCode, Long issueNum) {
 		return IssueVO.convertFor(issueRepo.findByGameCodeAndIssueNum(gameCode, issueNum));
+	}
+
+	@ParamValid
+	public List<LotteryHistoryVO> findLotteryHistory(LotteryHistoryParam param) {
+		List<Issue> issues = issueRepo.findByGameCodeAndLotteryDateAndEndTimeLessThanEqualOrderByEndTimeDesc(
+				param.getGameCode(), param.getLotteryDate(), new Date());
+		return LotteryHistoryVO.convertFor(issues);
 	}
 
 }

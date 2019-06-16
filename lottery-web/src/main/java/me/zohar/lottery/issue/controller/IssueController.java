@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import me.zohar.lottery.common.vo.Result;
+import me.zohar.lottery.issue.param.LotteryHistoryParam;
 import me.zohar.lottery.issue.service.IssueService;
 
 @Controller
@@ -39,11 +40,17 @@ public class IssueController {
 	public Result getLatelyIssue(String gameCode) {
 		return Result.success().setData(issueService.getLatelyIssue(gameCode));
 	}
-	
+
 	@GetMapping("/findTodayTrackingNumberIssue")
 	@ResponseBody
 	public Result findTodayTrackingNumberIssue(String gameCode) {
 		return Result.success().setData(issueService.findTodayTrackingNumberIssue(gameCode));
+	}
+
+	@GetMapping("/findLotteryHistory")
+	@ResponseBody
+	public Result findLotteryHistory(LotteryHistoryParam param) {
+		return Result.success().setData(issueService.findLotteryHistory(param));
 	}
 
 }

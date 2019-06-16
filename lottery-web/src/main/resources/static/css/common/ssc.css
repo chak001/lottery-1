@@ -186,7 +186,7 @@
 	padding-right: 8px;
 }
 
-.today-latest-betting-record-card .betting-record-link {
+.card-header-link {
 	color: #f34649;
 	cursor: pointer;
 }
@@ -643,6 +643,3 @@
 	text-align: right;
 }
 
-#ex1Slider .slider-selection {
-	background: #BABABA;
-}

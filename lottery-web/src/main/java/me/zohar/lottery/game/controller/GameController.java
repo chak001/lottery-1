@@ -46,4 +46,10 @@ public class GameController {
 		return Result.success().setData(gameService.findGameSituationByGameCategoryId(gameCategoryId));
 	}
 
+	@GetMapping("/findGameByGameCode")
+	@ResponseBody
+	public Result findGameByGameCode(String gameCode) {
+		return Result.success().setData(gameService.findGameByGameCode(gameCode));
+	}
+
 }

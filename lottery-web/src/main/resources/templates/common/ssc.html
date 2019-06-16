@@ -161,7 +161,10 @@
 			</div>
 			<div class="col-sm-3">
 				<div class="card lately-lottery-result-card">
-					<div class="card-header">最近开奖</div>
+					<div class="card-header">
+					<span>最近开奖</span>
+					<span class="float-right card-header-link" v-on:click="toLotteryHistoryPage">开奖走势>></span>
+					</div>
 					<div class="card-body lately-lottery-result-card-body">
 						<table class="table table-sm lately-lottery-result">
 							<thead>
@@ -181,7 +184,7 @@
 				</div>
 				<div class="card today-latest-betting-record-card">
 					<div class="card-header">
-						<span>今日投注</span><span class="float-right betting-record-link" v-on:click="gotoBettingRecordPage">投注记录>></span>
+						<span>今日投注</span><span class="float-right card-header-link" v-on:click="toBettingRecordPage">投注记录>></span>
 					</div>
 					<div class="card-body today-latest-betting-record-card-body">
 						<table class="table table-sm today-latest-betting-record">

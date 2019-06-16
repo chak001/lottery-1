@@ -165,5 +165,15 @@ public class PageController {
 	public String agentCenter() {
 		return "agent-center";
 	}
+	
+	/**
+	 * 开奖历史
+	 * 
+	 * @return
+	 */
+	@GetMapping("/lottery-history")
+	public String lotteryHistory() {
+		return "lottery-history";
+	}
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.BeanUtils;
@@ -93,10 +94,11 @@ public class GameService {
 		List<GameSituation> gameSituations = gameSituationRepo.findByOrderByHotGameFlagDesc();
 		return GameSituationVO.convertFor(gameSituations);
 	}
-	
+
 	@Transactional(readOnly = true)
 	public List<GameSituationVO> findGameSituationByGameCategoryId(String gameCategoryId) {
-		List<GameSituation> gameSituations = gameSituationRepo.findByGameCategoryIdOrderByHotGameFlagDesc(gameCategoryId);
+		List<GameSituation> gameSituations = gameSituationRepo
+				.findByGameCategoryIdOrderByHotGameFlagDesc(gameCategoryId);
 		return GameSituationVO.convertFor(gameSituations);
 	}
 
@@ -174,6 +176,12 @@ public class GameService {
 	@Transactional(readOnly = true)
 	public GameVO findGameById(String id) {
 		Game game = gameRepo.getOne(id);
+		return GameVO.convertFor(game);
+	}
+
+	@Transactional(readOnly = true)
+	public GameVO findGameByGameCode(@NotBlank String gameCode) {
+		Game game = gameRepo.findByGameCode(gameCode);
 		return GameVO.convertFor(game);
 	}
 
