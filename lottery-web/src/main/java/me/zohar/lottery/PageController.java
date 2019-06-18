@@ -37,24 +37,15 @@ public class PageController {
 	}
 
 	/**
-	 * 重庆时时彩
+	 * 时时彩
 	 * 
 	 * @return
 	 */
-	@GetMapping("/cqssc")
-	public String cqssc() {
-		return "cqssc";
+	@GetMapping("/ssc")
+	public String ssc() {
+		return "ssc";
 	}
 
-	/**
-	 * 新疆时时彩
-	 * 
-	 * @return
-	 */
-	@GetMapping("/xjssc")
-	public String xjssc() {
-		return "xjssc";
-	}
 
 	/**
 	 * 个人中心

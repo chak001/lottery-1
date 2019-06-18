@@ -82,8 +82,8 @@ var ssc = new Vue({
 		}
 	},
 	created : function() {
-		this.gameCode = globalGameCode;
-		this.gameName = globalGameName;
+		this.gameCode = getQueryString('gameCode');
+		this.loadGameInfo();
 		this.refreshLatelyIssue();
 		this.refreshCurrentIssue();
 		this.loadGamePlay();
@@ -92,6 +92,19 @@ var ssc = new Vue({
 		this.initRebateAndOddsData();
 	},
 	methods : {
+		
+		loadGameInfo : function() {
+			var that = this;
+			that.$http.get('/game/findGameByGameCode', {
+				params : {
+					gameCode : that.gameCode
+				}
+			}).then(function(res) {
+				that.gameName = res.body.data.gameName;
+				document.title = that.gameName;
+			});
+		},
+		
 		toLotteryHistoryPage : function() {
 			window.location.href = '/lottery-history?gameCode=' + this.gameCode;
 		},
@@ -139,7 +152,7 @@ var ssc = new Vue({
 				});
 				return;
 			}
-			trackingNumberModal.showTrackingNumberModal(this.gameCode, this.baseAmount, this.numberFormat(headerVM.rebate - this.selectedOddsAndRebate.rebate), this.preBettingRecords, this.trackingNumberCallBack);
+			trackingNumberModal.showTrackingNumberModal(this.gameCode, this.baseAmount, numberFormat(headerVM.rebate - this.selectedOddsAndRebate.rebate), this.preBettingRecords, this.trackingNumberCallBack);
 		},
 
 		trackingNumberCallBack : function() {
@@ -209,10 +222,6 @@ var ssc = new Vue({
 			}
 			this.numLocates = numLocates;
 			this.resetBettingCountAndAmount();
-		},
-
-		numberFormat : function(num) {
-			return parseFloat(Number(num).toFixed(4));
 		},
 
 		/**
@@ -583,7 +592,7 @@ var ssc = new Vue({
 				baseAmount : that.baseAmount,
 				multiple : that.multiple,
 				trackingNumberFlag : false,
-				rebate : that.numberFormat(headerVM.rebate - that.selectedOddsAndRebate.rebate),
+				rebate : numberFormat(headerVM.rebate - that.selectedOddsAndRebate.rebate),
 				bettingRecords : that.preBettingRecords
 			};
 			that.$http.post('/betting/placeOrder', placeOrderParam).then(function(res) {

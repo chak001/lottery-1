@@ -190,7 +190,7 @@
 						<div class="game-action">
 							<div class="btn-group">
 								<button type="button" class="btn btn-lg" v-on:click="toLotteryHistoryPage(game)">开奖趋势</button>
-								<button type="button" class="btn btn-lg btn-danger">立即投注</button>
+								<button type="button" class="btn btn-lg btn-danger" v-on:click="toBettingPage(game)">立即投注</button>
 							</div>
 						</div>
 					</div>
@@ -216,8 +216,28 @@
 			},
 			methods : {
 
+				toBettingPage : function(game) {
+					if (game.gameCategoryCode == 'SSC') {
+						window.location.href = '/ssc?gameCode=' + game.gameCode;
+					} else {
+						layer.alert('未实现', {
+							title : '提示',
+							icon : 7,
+							time : 3000
+						});
+					}
+				},
+
 				toLotteryHistoryPage : function(game) {
-					window.location.href = '/lottery-history?gameCode=' + game.gameCode;
+					if (game.gameCategoryCode == 'SSC') {
+						window.location.href = '/lottery-history?gameCode=' + game.gameCode;
+					} else {
+						layer.alert('未实现', {
+							title : '提示',
+							icon : 7,
+							time : 3000
+						});
+					}
 				},
 
 				loadAllGameSituation : function() {

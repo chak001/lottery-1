@@ -30,9 +30,13 @@ public class GameSituationVO {
 	 * 游戏名称
 	 */
 	private String gameName;
-	
+
 	private String gameCategoryId;
-	
+
+	private String gameCategoryCode;
+
+	private String gameCategoryName;
+
 	private Boolean hotGameFlag;
 
 	/**
@@ -44,9 +48,9 @@ public class GameSituationVO {
 	 * 当前期
 	 */
 	private Long currentIssue;
-	
+
 	private Long currentIssueInner;
-	
+
 	/**
 	 * 当前期结束时间
 	 */
@@ -62,7 +66,7 @@ public class GameSituationVO {
 	 * 上一期开奖号码
 	 */
 	private String preIssueLotteryNum;
-	
+
 	/**
 	 * 下一期
 	 */

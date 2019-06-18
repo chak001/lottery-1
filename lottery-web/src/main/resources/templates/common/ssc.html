@@ -1,7 +1,16 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<style>
-</style>
+<meta charset="utf-8">
+<title>重庆时时彩</title>
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script src="https://cdn.bootcss.com/dayjs/1.7.8/dayjs.min.js"></script>
 <link href="/css/common/common.css" rel="stylesheet" type="text/css">
 <link href="/css/common/ssc.css" rel="stylesheet" type="text/css">
 </head>
@@ -162,8 +171,7 @@
 			<div class="col-sm-3">
 				<div class="card lately-lottery-result-card">
 					<div class="card-header">
-					<span>最近开奖</span>
-					<span class="float-right card-header-link" v-on:click="toLotteryHistoryPage">开奖走势>></span>
+						<span>最近开奖</span> <span class="float-right card-header-link" v-on:click="toLotteryHistoryPage">走势图>></span>
 					</div>
 					<div class="card-body lately-lottery-result-card-body">
 						<table class="table table-sm lately-lottery-result">

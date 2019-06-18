@@ -126,7 +126,12 @@
 							<div class="ssc-game-lottery-content" v-show="issue.lotteryNum != null && issue.lotteryNum != ''">
 								<span v-for="(num, index) in splitLotteryNum(issue)" v-bind:class="getNumClass(issue.issueNum, index, num)">{{num}}</span>
 							</div>
-							<div style="padding-top: 4px;" v-show="issue.lotteryNum == null || issue.lotteryNum == ''">正在获取开奖结果...</div>
+							<div style="padding-top: 4px;" v-show="issue.lotteryNum == null || issue.lotteryNum == ''">
+								<div class="text-center text-secondary">
+									<strong>正在获取开奖结果...</strong>
+									<div class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></div>
+								</div>
+							</div>
 						</div>
 					</td>
 					<td>{{issue.extField.sumLotteryNum}}</td>

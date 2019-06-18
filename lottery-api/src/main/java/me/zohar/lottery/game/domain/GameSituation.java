@@ -37,9 +37,13 @@ public class GameSituation {
 	 * 游戏名称
 	 */
 	private String gameName;
-	
+
 	private String gameCategoryId;
-	
+
+	private String gameCategoryCode;
+
+	private String gameCategoryName;
+
 	private Boolean hotGameFlag;
 
 	/**

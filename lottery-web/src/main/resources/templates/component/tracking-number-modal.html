@@ -85,15 +85,15 @@
 										<tr v-for="(trackingNumberRecord, index) in trackingNumberRecords">
 											<td>{{trackingNumberRecord.issueNum}}</td>
 											<td><input type="text" class="form-control-sm" v-model="trackingNumberRecord.multiple"></td>
-											<td>{{baseAmount * trackingNumberRecord.multiple * preBettingTotalCount}}</td>
-											<td>{{cumulativeBettingAmount(index)}}</td>
+											<td>{{numberFormat(baseAmount * trackingNumberRecord.multiple * preBettingTotalCount)}}</td>
+											<td>{{numberFormat(cumulativeBettingAmount(index))}}</td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
 							<div class="modal-footer">
 								<div class="generage-tracking-summary">
-									单倍注数<span>{{preBettingTotalCount}}</span>注，购买<span>{{trackingNumberRecords.length}}</span>期，合计<span>￥{{preBettingTotalAmount}}</span>
+									单倍注数<span>{{preBettingTotalCount}}</span>注，购买<span>{{trackingNumberRecords.length}}</span>期，合计<span>￥{{numberFormat(preBettingTotalAmount)}}</span>
 								</div>
 								<button type="button" class="btn btn-sm" v-on:click="showTrackingNumberFlag = false">取消追号</button>
 								<button type="button" class="btn btn-danger btn-sm" v-on:click="startTrackingNumber">确认追号</button>

@@ -123,7 +123,7 @@
 						<div class="game-lottery-tip" v-show="game.currentIssue == null">休市中...</div>
 					</div>
 					<div class="game-action">
-						<button type="button" class="btn btn-danger">立即投注</button>
+						<button type="button" class="btn btn-danger" v-on:click="toBettingPage(game)">立即投注</button>
 					</div>
 				</div>
 			</div>
@@ -146,6 +146,18 @@
 			},
 			methods : {
 
+				toBettingPage : function(game) {
+					if (game.gameCategoryCode == 'SSC') {
+						window.location.href = '/ssc?gameCode=' + game.gameCode;
+					} else {
+						layer.alert('未实现', {
+							title : '提示',
+							icon : 7,
+							time : 3000
+						});
+					}
+				},
+				
 				loadAllGameSituation : function() {
 					var that = this;
 					that.$http.get('/game/findAllGameSituation').then(function(res) {

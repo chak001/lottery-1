@@ -33,7 +33,7 @@ public class GameVO {
 	 * 游戏说明
 	 */
 	private String gameDesc;
-	
+
 	private Boolean hotGameFlag;
 
 	/**
@@ -52,6 +52,8 @@ public class GameVO {
 	 * 游戏类别id
 	 */
 	private String gameCategoryId;
+
+	private String gameCategoryCode;
 
 	private String gameCategoryName;
 
@@ -74,6 +76,7 @@ public class GameVO {
 		BeanUtils.copyProperties(game, vo);
 		vo.setStateName(DictHolder.getDictItemName("gameState", vo.getState()));
 		if (game.getGameCategory() != null) {
+			vo.setGameCategoryCode(game.getGameCategory().getGameCategoryCode());
 			vo.setGameCategoryName(game.getGameCategory().getGameCategoryName());
 		}
 		return vo;
