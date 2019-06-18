@@ -92,7 +92,14 @@ var ssc = new Vue({
 		this.initRebateAndOddsData();
 	},
 	methods : {
-		
+
+		/**
+		 * 机选10注
+		 */
+		selectRandom10 : function() {
+
+		},
+
 		loadGameInfo : function() {
 			var that = this;
 			that.$http.get('/game/findGameByGameCode', {
@@ -104,7 +111,7 @@ var ssc = new Vue({
 				document.title = that.gameName;
 			});
 		},
-		
+
 		toLotteryHistoryPage : function() {
 			window.location.href = '/lottery-history?gameCode=' + this.gameCode;
 		},
