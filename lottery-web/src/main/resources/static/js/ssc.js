@@ -97,7 +97,115 @@ var ssc = new Vue({
 		 * 机选10注
 		 */
 		selectRandom10 : function() {
-
+			var preBettingRecords = [];
+			for (var i = 0; i < 10; i++) {
+				var preBettingRecord = {
+						gamePlayCategoryCode : this.selectedPlay.gamePlayCategoryCode,
+						gamePlayCode : this.selectedPlay.gamePlayCode,
+						gamePlayName : this.selectedPlay.gamePlayName,
+						selectedNo : this.selectRandom().join(','),
+						bettingCount : 1
+				};
+				preBettingRecords.push(preBettingRecord);
+			}
+			this.preBettingRecords = this.preBettingRecords.concat(preBettingRecords);
+		},
+		
+		/**
+		 * 机选号码
+		 */
+		selectRandom : function() {
+			var gamePlayCode = this.selectedPlay.gamePlayCode;
+			var numLocates = this.selectedPlay.numLocates;
+			var numLocateLength = numLocates.length;
+			var gamePlayCodeMap = new Map();
+			var selectedNos = [];
+			switch (gamePlayCode) {
+			case 'R2ZX':
+				gamePlayCodeMap.set('R2ZX', 2);
+			case 'R3ZX':
+				gamePlayCodeMap.set('R3ZX', 3);
+			case '5XDW':
+				gamePlayCodeMap.set('5XDW', 1);
+				for (var c = 0; c < numLocateLength; c++) {
+					selectedNos[c] = '-';
+				}
+				for (var u = [], p = 1; p <= gamePlayCodeMap.get(gamePlayCode); p++) {
+					var m = Math.floor(Math.random() * numLocateLength + 1), h = !1;
+					for ( var d in u) {
+						if (u[d] === m) {
+							h = !0;
+							break
+						}
+					}
+					if (h)
+						p--;
+					else {
+						u.push(m), i = parseInt(numLocates[m - 1].maxSelected), o = Math.floor(Math.random() * i);
+						var f = numLocates[m - 1].optionalNums, b = f[o].num;
+						selectedNos[m - 1] = b
+					}
+				}
+				break;
+			case 'Q32M':
+				gamePlayCodeMap.set('Q32M', [2]);
+			case 'Z32M':
+				gamePlayCodeMap.set('Z32M', [2]);
+			case 'H32M':
+				gamePlayCodeMap.set('H32M', [2]);
+			case '4X2M':
+				gamePlayCodeMap.set('4X2M', [2]);
+			case '5X2M':
+				gamePlayCodeMap.set('5X2M', [2]);
+			case '5X3M':
+				gamePlayCodeMap.set('5X3M', [3]);
+			case 'H2ZUX':
+				gamePlayCodeMap.set('H2ZUX', [2]);
+			case 'Q2ZUX':
+				gamePlayCodeMap.set('Q2ZUX', [2]);
+				for (var g = [], p = 1; p <= numLocateLength; p++) {
+                    var y = [];
+                    var v = '';
+                    var i = parseInt(numLocates[p - 1].maxSelected);
+                    for (var s = 1; s <= gamePlayCodeMap.get(gamePlayCode)[p - 1]; s++) {
+                        var h = !1;
+                        o = Math.floor(Math.random() * i);
+                        for (var d in g)
+                            if (g[d] === o) {
+                                h = !0;
+                                break
+                            }
+                        h ? s-- : (g.push(o),
+                        y.push(o),
+                        v = y.sort().join('_'))
+                    }
+                    selectedNos.push(v);
+                }
+				break;
+			case 'H1ZX':
+			case 'Q2ZX':
+			case 'H2ZX':
+			case 'Q3ZX':
+			case 'Z3ZX':
+			case 'H3ZX':
+			case 'Q4ZX':
+			case 'H4ZX':
+			case '5XZX':
+			case 'Q31M':
+			case 'Z31M':
+			case 'H31M':
+			case '4X1M':
+				for (p = 1; p <= numLocateLength; p++) {
+					i = parseInt(numLocates[p - 1].maxSelected), o = Math.floor(Math.random() * i);
+					var f = numLocates[p - 1].optionalNums, b = f[o].num;
+					selectedNos.push(b)
+				}
+				break;
+			default:
+				throw 'unknown play ' + gamePlayCode
+			}
+			console.log(selectedNos);
+			return selectedNos;
 		},
 
 		loadGameInfo : function() {
@@ -298,7 +406,7 @@ var ssc = new Vue({
 		/**
 		 * 选择全部单数号球
 		 */
-		selectOddNum : function(index) {
+		selectSingleNum : function(index) {
 			var nums = this.numLocates[index].nums;
 			for (var i = 0; i < nums.length; i++) {
 				nums[i].selectedFlag = !(nums[i].num % 2 == 0);
@@ -309,7 +417,7 @@ var ssc = new Vue({
 		/**
 		 * 选择全部双数号球
 		 */
-		selectEvenNum : function(index) {
+		selectDoubleNum : function(index) {
 			var nums = this.numLocates[index].nums;
 			for (var i = 0; i < nums.length; i++) {
 				nums[i].selectedFlag = (nums[i].num % 2 == 0);
