@@ -1,27 +1,16 @@
 package me.zohar.lottery.betting.domain;
 
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.ConstraintMode;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Version;
-
+import lombok.Getter;
+import lombok.Setter;
+import me.zohar.lottery.common.utils.IdUtils;
+import me.zohar.lottery.useraccount.domain.UserAccount;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
-import lombok.Getter;
-import lombok.Setter;
-import me.zohar.lottery.common.utils.IdUtils;
-import me.zohar.lottery.useraccount.domain.UserAccount;
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  * 投注返点
@@ -38,22 +27,22 @@ import me.zohar.lottery.useraccount.domain.UserAccount;
 @DynamicUpdate(true)
 public class BettingRebate {
 
-	/**
-	 * 主键id
-	 */
-	@Id
-	@Column(name = "id", length = 32)
-	private String id;
+    /**
+     * 主键id
+     */
+    @Id
+    @Column(name = "id", length = 32)
+    private String id;
 
-	/**
-	 * 返点
-	 */
-	private Double rebate;
+    /**
+     * 返点
+     */
+    private Double rebate;
 
-	/**
-	 * 赔率
-	 */
-	private Double odds;
+    /**
+     * 赔率
+     */
+    private Double odds;
 
 	/**
 	 * 是否属于中奖返点
@@ -122,5 +111,7 @@ public class BettingRebate {
 		bettingRebate.setRebateAccountId(rebateAccountId);
 		return bettingRebate;
 	}
+
+
 
 }

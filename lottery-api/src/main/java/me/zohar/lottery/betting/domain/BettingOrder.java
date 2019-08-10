@@ -1,30 +1,18 @@
 package me.zohar.lottery.betting.domain;
 
-import java.util.Date;
-import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.ConstraintMode;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Version;
-
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
-
 import lombok.Getter;
 import lombok.Setter;
 import me.zohar.lottery.constants.Constant;
 import me.zohar.lottery.issue.domain.Issue;
 import me.zohar.lottery.useraccount.domain.UserAccount;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.util.Set;
 
 /**
  * 投注订单
@@ -139,7 +127,8 @@ public class BettingOrder {
 
 	@NotFound(action = NotFoundAction.IGNORE)
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "issue_id", updatable = false, insertable = false, foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
+	@JoinColumn(name = "issue_id", updatable = false, insertable = false,
+            foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
 	private Issue issue;
 
 	/**
