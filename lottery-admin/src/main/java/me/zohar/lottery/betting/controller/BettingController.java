@@ -1,21 +1,17 @@
 package me.zohar.lottery.betting.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import me.zohar.lottery.betting.param.BettingOrderQueryCondParam;
 import me.zohar.lottery.betting.param.ChangeOrderParam;
 import me.zohar.lottery.betting.service.BettingService;
 import me.zohar.lottery.common.vo.Result;
 import me.zohar.lottery.config.security.UserAccountDetails;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 
 @Controller
 @RequestMapping("/betting")
@@ -77,5 +73,6 @@ public class BettingController {
 		bettingService.batchCancelOrder(orderIds, user.getUserAccountId());
 		return Result.success();
 	}
+
 
 }
