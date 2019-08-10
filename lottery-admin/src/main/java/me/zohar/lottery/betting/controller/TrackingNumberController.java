@@ -40,4 +40,15 @@ public class TrackingNumberController {
 		return Result.success();
 	}
 
+
+	@GetMapping("/cancelOrder")
+	@ResponseBody
+	public Result testGit(String orderId) {
+		UserAccountDetails user = (UserAccountDetails) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		trackingNumberService.cancelOrder(orderId, user.getUserAccountId());
+		return Result.success();
+	}
+
+
 }
